@@ -1,0 +1,14 @@
+.sidebar-container {
+    width: 160px;
+    height: 100vh;
+    border: 1px solid black;
+    .sidebar-item-container {
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+
+        &:hover {
+            color: blue;
+        }
+    }
+}
