@@ -8,6 +8,7 @@ import { SelectPanel } from './select';
 import { MainContent } from './mainContent';
 import { Compose } from './compose';
 import { Button } from './button';
+import { ErrorBoundary } from './errorBoundary';
 
 // 这是的作用仅仅是提供一个默认值
 const ThemeContext = React.createContext('normal');
@@ -84,9 +85,11 @@ export class Main extends React.Component {
         {/* 每个 Context 对象都会返回一个 Provider React 组件，它允许消费组件订阅 context 的变化。
         Provider 接收一个 value 属性，传递给消费组件 */}
         <ThemeContext.Provider value="vscode dark">
-          <MainContent>
-            {target}
-          </MainContent>
+          <ErrorBoundary>
+            <MainContent>
+              {target}
+            </MainContent>
+          </ErrorBoundary>
         </ThemeContext.Provider>
       </div>
     );
