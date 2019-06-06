@@ -5,6 +5,7 @@ import { Sidebar } from "./sidebar";
 import { Nothing } from "./nothing";
 import { SimpleForm } from "./form";
 import { SelectPanel } from './select';
+import { MainContent } from './mainContent';
 
 export class Main extends React.Component {
   constructor(props) {
@@ -66,7 +67,9 @@ export class Main extends React.Component {
           menus={this.state.ComponentNameList}
           onHandleClick={this.onHandleClick}
         />
-        <div className="content">{target}</div>
+        <MainContent>
+          {target}
+        </MainContent>
       </div>
     );
   }
