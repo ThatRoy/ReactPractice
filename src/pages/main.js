@@ -6,12 +6,13 @@ import { Nothing } from "./nothing";
 import { SimpleForm } from "./form";
 import { SelectPanel } from './select';
 import { MainContent } from './mainContent';
+import { Compose } from './compose';
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ComponentNameList: ["default", "toggle", "nothing", "form", "select"],
+      ComponentNameList: ["default", "toggle", "nothing", "form", "select", "compose"],
       currentSelect: "default"
     };
     // this.onSelectChange = this.onSelectChange.bind(this)
@@ -56,6 +57,9 @@ export class Main extends React.Component {
         break;
       case "select":
         target = <SelectPanel options={this.state.ComponentNameList} />;
+        break;
+      case "compose":
+        target = <Compose header={<Toggle/>} content={<SimpleForm/>}/>
         break;
       default:
         target = <div>主界面</div>;
