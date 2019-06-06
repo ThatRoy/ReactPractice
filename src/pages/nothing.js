@@ -9,25 +9,29 @@ export class Nothing extends React.Component {
     return null
   }
 
-  componentWillMount() {
-    console.log('componentWillMount ')
-  }
+  // componentWillMount() {
+  //   console.log('componentWillMount ')
+  // }
 
   componentDidMount() {
     console.log('componentDidMount ')
   }
 
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps ')
+  static getDerivedStateFromProps() {
+    console.log('getDerivedStateFromProps')
   }
+
+  // componentWillReceiveProps() {
+  //   console.log('componentWillReceiveProps ')
+  // }
 
   shouldComponentUpdate() {
     console.log('shouldComponentUpdate ')
   }
 
-  componentWillUpdate() {
-    console.log('componentWillUpdate')
-  }
+  // componentWillUpdate() {
+  //   console.log('componentWillUpdate')
+  // }
 
   componentDidUpdate() {
     console.log('componentDidUpdate ')
