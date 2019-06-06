@@ -3,6 +3,7 @@ import React from 'react';
 import { Toggle } from './event';
 import { Sidebar } from './sidebar'
 import './main.scss';
+import { Nothing } from './nothing'
 
 export class Main extends React.Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export class Main extends React.Component {
         this.state = {
             ComponentNameList: [
                 'default',
-                'toggle'
+                'toggle',
+                'nothing'
             ],
             currentSelect: 'default',
         }
@@ -39,7 +41,7 @@ export class Main extends React.Component {
         //     currentSelect: value
         // }))
     }
-    
+
     // <SelectPanel options={this.state.ComponentNameList} onSelectChange={this.onSelectChange}/>
     render() {
         let target = <div>主界面</div>
@@ -47,6 +49,9 @@ export class Main extends React.Component {
         switch(type) {
             case 'toggle':
                 target = <Toggle/>
+                break;
+            case 'nothing':
+                target = <Nothing/>
                 break;
         }
         return (
