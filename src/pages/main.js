@@ -7,12 +7,19 @@ import { SimpleForm } from "./form";
 import { SelectPanel } from './select';
 import { MainContent } from './mainContent';
 import { Compose } from './compose';
+import { Button } from './button';
+
+// 这是的作用仅仅是提供一个默认值
+const ThemeContext = React.createContext('normal');
+// 把 Context 对象 挂载在 class 上的 contextType ，让 Button 可以通过 this.context 访问到
+// 但是这样，不是很难用？
+Button.contextType = ThemeContext;
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ComponentNameList: ["default", "toggle", "nothing", "form", "select", "compose"],
+      ComponentNameList: ["default", "toggle", "nothing", "form", "select", "compose","button"],
       currentSelect: "default"
     };
     // this.onSelectChange = this.onSelectChange.bind(this)
@@ -61,6 +68,9 @@ export class Main extends React.Component {
       case "compose":
         target = <Compose header={<Toggle/>} content={<SimpleForm/>}/>
         break;
+      case "button":
+        target = <Button/>
+        break;
       default:
         target = <div>主界面</div>;
         break;
@@ -71,9 +81,13 @@ export class Main extends React.Component {
           menus={this.state.ComponentNameList}
           onHandleClick={this.onHandleClick}
         />
-        <MainContent>
-          {target}
-        </MainContent>
+        {/* 每个 Context 对象都会返回一个 Provider React 组件，它允许消费组件订阅 context 的变化。
+        Provider 接收一个 value 属性，传递给消费组件 */}
+        <ThemeContext.Provider value="vscode dark">
+          <MainContent>
+            {target}
+          </MainContent>
+        </ThemeContext.Provider>
       </div>
     );
   }
