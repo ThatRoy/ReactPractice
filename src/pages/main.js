@@ -9,6 +9,7 @@ import { MainContent } from './mainContent';
 import { Compose } from './compose';
 import { Button } from './button';
 import { ErrorBoundary } from './errorBoundary';
+import { RenderProp } from './renderProp';
 
 // 这是的作用仅仅是提供一个默认值
 const ThemeContext = React.createContext('normal');
@@ -20,7 +21,7 @@ export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ComponentNameList: ["default", "toggle", "nothing", "form", "select", "compose","button"],
+      ComponentNameList: ["default", "toggle", "nothing", "form", "select", "compose","button","RenderProp"],
       currentSelect: "default"
     };
     // this.onSelectChange = this.onSelectChange.bind(this)
@@ -71,6 +72,24 @@ export class Main extends React.Component {
         break;
       case "button":
         target = <Button/>
+        break;
+      case "RenderProp":
+        // 这里默认是自定义 render 的写法
+        // target = <RenderProp render={data=> (
+        //   <div>
+        //     <h1>这里是Main的标题</h1>
+        //     <h2>RenderProp 里的数据是： {data}</h2>
+        //   </div>
+        // )}/>
+        // 这里默认是 children 的写法
+        target = <RenderProp>
+          {data=> (
+            <div>
+              <h1>这里是Main的标题</h1>
+              <h2>RenderProp 里的数据是： {data}</h2>
+            </div>
+          )}
+        </RenderProp>
         break;
       default:
         target = <div>主界面</div>;
